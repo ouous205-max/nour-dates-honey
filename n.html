@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour Dates Honey - Landing to Shop (One Page)</title>
+    <style>
+        /* --- Global Styles --- */
+        :root {
+            --primary-color: #5d4037; /* Dark Brown */
+            --accent-color: #f1b343;  /* Gold/Honey */
+            --accent-color-hover: #d1922c;
+            --background-color: #fcfcfc; /* Light cream */
+            --text-color: #4a4a4a;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --border-radius: 12px;
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 { color: var(--primary-color); }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Global Utility Classes --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Classes to control visibility of sections */
+        .hidden { display: none !important; }
+        .visible { display: block !important; }
+
+        /* --- Header / Navigation (Shared) --- */
+        header {
+            background: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active-link {
+            color: var(--accent-color);
+        }
+
+        /* Spacer to push content down below fixed header */
+        .header-spacer {
+            height: 90px;
+        }
+
+        /* ==============================
+           Section 1: Landing Page
+           ============================== */
+        #landing-page-view {
+            padding-top: 50px;
+            padding-bottom: 80px;
+        }
+
+        .landing-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .landing-text h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .landing-text p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background-color: var(--primary-color);
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #4a342c;
+        }
+
+        .cta-button:active {
+            transform: translateY(2px);
+        }
+
+        .hero-graphics-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .decorative-arch {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            background-color: #fff3e0;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-label-image {
+            width: 90%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .landing-video-section {
+            margin-top: 60px;
+        }
+
+        .landing-video-section .video-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .landing-video-section .video-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .landing-video-section .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Landing Features */
+        .landing-features {
+            background: #fff;
+            padding: 80px 0;
+            margin-top: 80px;
+            border-radius: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 30px;
+        }
+
+        .feature-item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 25px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* ==============================
+           Section 2: Shop View
+           ============================== */
+        #shop-view {
+            padding-top: 60px;
+            padding-bottom: 80px;
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .shop-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .shop-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .shop-product-info h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .shop-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .price-container {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .price-label { color: #999; font-size: 1rem; }
+        .price-value { color: var(--accent-color); font-size: 2.2rem; font-weight: bold; }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .buy-button:hover { background-color: var(--accent-color-hover); }
+        .buy-button:active { transform: translateY(2px); }
+
+        .back-to-landing {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- Footer (Shared) --- */
+        footer {
+            background-color: var(--primary-color);
+            color: rgba(255,255,255,0.8);
+            padding: 40px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        /* ==============================
+           Section 3: About Page
+           ============================== */
+        #about-section {
+            padding-top: 60px;
+            padding-bottom: 80px;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .about-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .about-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-values {
+            background: #fff;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .about-values h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .value-item img {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .value-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .value-item p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .back-from-about {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* --- Modal/Checkout (Hidden by Default) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-instruction {
+            font-size: 0.9rem;
+            color: #d9534f;
+            background-color: #f9f2f4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        #checkoutForm label { display: block; margin-bottom: 8px; color: var(--primary-color); font-weight: bold; }
+        #checkoutForm input { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
+
+        .submit-order-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-order-button:hover { background-color: #4a342c; }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            /* Container adjustments */
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Header/Navigation */
+            header {
+                padding: 15px 0;
+            }
+
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 20px;
+                font-size: 0.9rem;
+            }
+
+            .logo-text {
+                font-size: 1.4rem;
+            }
+
+            .header-spacer {
+                height: 110px;
+            }
+
+            /* Landing Page Hero */
+            .landing-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .landing-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .landing-text p {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            .hero-label-image {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            /* Features Grid */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .feature-item img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .feature-item h3 {
+                font-size: 1.3rem;
+            }
+
+            /* Shop View */
+            .shop-header h2 {
+                font-size: 2rem;
+            }
+
+            .shop-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .shop-product-info h1 {
+                font-size: 2rem;
+            }
+
+            .shop-description {
+                font-size: 1rem;
+            }
+
+            .price-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .buy-button {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+
+            /* About Section */
+            .about-header h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .about-image {
+                max-width: 350px;
+            }
+
+            .about-text h3 {
+                font-size: 1.6rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .about-values {
+                padding: 40px 20px;
+            }
+
+            .about-values h3 {
+                font-size: 1.6rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .value-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .value-item img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .value-item h4 {
+                font-size: 1.2rem;
+            }
+
+            /* Modal */
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .close-modal {
+                right: 15px;
+                top: 10px;
+            }
+
+            /* Landing video section */
+            .landing-video-section {
+                margin-top: 40px;
+            }
+
+            .landing-features {
+                padding: 50px 0;
+                margin-top: 40px;
+            }
+        }
+
+        /* Extra small devices (phones, less than 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+
+            .landing-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .landing-text p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .shop-header h2,
+            .about-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .shop-product-info h1 {
+                font-size: 1.6rem;
+            }
+
+            .price-value {
+                font-size: 1.8rem;
+            }
+
+            .modal-content {
+                padding: 25px 15px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="Nour Dates Honey" style="height: 70px; width: auto;">
+            <nav>
+                <ul id="main-nav">
+                    <li><a href="#" class="nav-link active-link" data-target="landing">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="shop">Shop</a></li>
+                    <li><a href="#" class="nav-link" data-target="about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="header-spacer"></div>
+
+    <main class="container">
+
+        <section id="landing-page-view" class="visible">
+            <div class="landing-hero">
+                <div class="landing-text">
+                    <h1> Welcome to a World of Purity.</h1>
+                    <p>Welcome to the world of Nour 
+
+Where the authenticity of golden dates meets the purity of natural honey in a single jar.</p>
+                    <a href="#" class="cta-button" id="landingCta">Shop Nour Now</a>
+                </div>
+                <div class="hero-graphics-container">
+                    <div class="decorative-arch"></div>
+                    <img src="100000220.png" alt="Nour Dates Honey Label" class="hero-label-image">
+                </div>
+            </div>
+
+            <div class="landing-video-section">
+                <div class="video-card">
+                    <div class="video-frame">
+                        <video
+                            src="Jar_of_Dates_202604100101.mp4"
+                            muted
+                            autoplay
+                            loop
+                            playsinline
+                            style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
+                        ></video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="landing-features">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/leaf.png" alt="100% Natural">
+                        <h3>100% Natural</h3>
+                        <p>No added sugar. No preservatives. Purely nature's sweetness.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/no-sugar.png" alt="No Added Sugar">
+                        <h3>Rich Date Blend</h3>
+                        <p>Infused with the deep, caramel notes of premium dates.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/bee.png" alt="Pure Honey">
+                        <h3>Pure Honey Base</h3>
+                        <p>Combining the best of both worlds for an incredible taste.</p>
+                    </div>
+                </div>
+            </div>
+        </section> <section id="shop-view" class="hidden">
+            <div class="shop-header">
+                <h2>Our Premium Collection</h2>
+                <p>Simple pricing. Exceptional quality. Pure indulgence.</p>
+            </div>
+
+            <div class="shop-hero">
+                <div class="card-wrapper hero-graphics-container">
+                     <img src="1000002192.png" alt="Nour Dates Honey Label" class="hero-label-image">
+                </div>
+                <div class="shop-product-info">
+                    <h1> Natural Date Honey</h1>
+                    <p class="shop-description">
+                        • 100% natural
+• No additives
+• Made from carefully selected dates + pure water
+• Prepared with high hygiene standards
+                    </p>
+                    <div class="price-container">
+                        <span class="price-label">Price </span>
+                        <span class="price-value">500da</span>
+                    </div>
+                    <button class="buy-button buy-now-btn">buy</button>
+                    <span class="back-to-landing back-btn"> &lt; Back to Home</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-section" class="hidden">
+            <div class="about-header">
+                <h2>Our Story</h2>
+                <p>From nature's bounty to your table — the journey of Nour</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image-container">
+                    <img src="100000220.png" alt="Nour Product" class="about-image">
+                </div>
+                <div class="about-text">
+                    <h3>About Nour Dates Honey</h3>
+                      <p>At Nour Dates Honey, we believe that true sweetness comes from nature 🍯
+Our journey started with a simple idea: to create a pure, natural product that brings both taste and health together.
+We carefully select high-quality dates and blend them with pure water to craft a 100% natural date honey — with no additives, no artificial ingredients, just authenticity.
+Each jar is prepared with care, following high hygiene standards to ensure quality you can trust.
+💛 Our mission is simple:
+To offer you a healthy alternative to sugar, rich in energy and full of natural goodness.
+From our hands to yours… experience the true taste of nature.
+</p>
+                </div>
+            </div>
+
+            <span class="back-from-about back-btn">&lt; Back to Home</span>
+        </section> </main> <footer>
+        <div class="container">
+            <p>&copy; 2023 Nour Natural Foods. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Complete Your Purchase</h2>
+            <p class="modal-instruction">Fill in your details and we'll contact you to complete your order.</p>
+            <form id="checkoutForm" action="https://formspree.io/f/xykbqzyp" method="POST">
+                <input type="hidden" name="product" value="Nour Dates Honey - 400ge jar - $24.99">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required placeholder="John Doe">
+                <label for="address">Shipping Address:</label>
+                <input type="text" id="address" name="address" required placeholder="123 Honey Lane">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+213 ">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                <button type="submit" class="submit-order-button">Submit Order</button>
+            </form>
+            <div id="formSuccess" style="display: none; text-align: center; padding: 20px;">
+                <h3 style="color: #5d4037;">Thank You!</h3>
+                <p>Your order has been received. We'll contact you soon to complete the purchase.</p>
+                <button onclick="closeCheckout()" class="submit-order-button" style="margin-top: 20px;">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Section View Management Logic ---
+            const landingView = document.getElementById('landing-page-view');
+            const shopView = document.getElementById('shop-view');
+            const aboutView = document.getElementById('about-section');
+            const mainNavLinks = document.querySelectorAll('.nav-link');
+            const landingCta = document.getElementById('landingCta');
+            const backBtns = document.querySelectorAll('.back-btn');
+
+
+            // Function to show a specific view and manage nav state
+            function showView(viewId) {
+                // Hide all views first
+                landingView.classList.add('hidden');
+                landingView.classList.remove('visible');
+                shopView.classList.add('hidden');
+                shopView.classList.remove('visible');
+                aboutView.classList.add('hidden');
+                aboutView.classList.remove('visible');
+
+                // Update active navigation link
+                mainNavLinks.forEach(link => link.classList.remove('active-link'));
+
+                if (viewId === 'landing') {
+                    landingView.classList.add('visible');
+                    landingView.classList.remove('hidden');
+                    document.querySelector('.nav-link[data-target="landing"]').classList.add('active-link');
+                } else if (viewId === 'shop') {
+                    shopView.classList.add('visible');
+                    shopView.classList.remove('hidden');
+                    document.querySelector('.nav-link[data-target="shop"]').classList.add('active-link');
+                } else if (viewId === 'about') {
+                    aboutView.classList.add('visible');
+                    aboutView.classList.remove('hidden');
+                    document.querySelector('.nav-link[data-target="about"]').classList.add('active-link');
+                }
+                // Ensure the page scrolls back to the top when switching views
+                window.scrollTo(0,0);
+            }
+
+            // Event Listeners for Nav Links
+            mainNavLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    const targetView = this.getAttribute('data-target');
+                    if (targetView) {
+                        event.preventDefault();
+                        showView(targetView);
+                    }
+                });
+            });
+
+            // Event Listener for the big landing page button
+            landingCta.addEventListener('click', function(event) {
+                event.preventDefault();
+                showView('shop');
+            });
+
+            // Event Listeners for "Back to Home" links in the shop view
+            backBtns.forEach(btn => {
+                btn.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    showView('landing');
+                });
+            });
+
+
+            // --- Modal/Checkout Logic ---
+            const buyNowBtns = document.querySelectorAll('.buy-now-btn');
+            const checkoutModal = document.getElementById('checkoutModal');
+            const closeModal = document.getElementById('closeModal');
+            const checkoutForm = document.getElementById('checkoutForm');
+
+            function openCheckout() { checkoutModal.style.display = 'flex'; }
+            function closeCheckout() { checkoutModal.style.display = 'none'; }
+
+            buyNowBtns.forEach(btn => btn.addEventListener('click', openCheckout));
+            closeModal.addEventListener('click', closeCheckout);
+
+            window.addEventListener('click', function(event) {
+                if (event.target === checkoutModal) {
+                    closeCheckout();
+                }
+            });
+
+            // Form Submission - Formspree handles the actual submission
+            checkoutForm.addEventListener('submit', function(event) {
+                // Formspree will handle the submission
+                // Show success message after submission
+                setTimeout(() => {
+                    checkoutForm.style.display = 'none';
+                    document.querySelector('.modal-instruction').style.display = 'none';
+                    document.getElementById('formSuccess').style.display = 'block';
+                    checkoutForm.reset();
+                }, 1000);
+            });
+
+            // Reset form display when opening modal
+            function openCheckout() {
+                checkoutModal.style.display = 'flex';
+                checkoutForm.style.display = 'block';
+                document.querySelector('.modal-instruction').style.display = 'block';
+                document.getElementById('formSuccess').style.display = 'none';
+            }
+
+        });
+    </script>
+</body>
+</html>
